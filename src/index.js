@@ -54,16 +54,16 @@ function Square(props) {
 
           this.state = {
               history: [{
-                  squares: Array(9).fill(null),
-                  xIsNext: true,
-              }]
+                  squares: Array(9).fill(null)
+                }],
+                xIsNext: true
           }
         }
           handleClick(i) {
 
             const history = this.state.history;
             const current = history[history.length -1]
-            const squares = this.state.squares.slice()
+            const squares = current.squares.slice()
         
             
             if(calculateWinner(squares) || squares[i]){
@@ -89,7 +89,7 @@ function Square(props) {
     const moves = history.map((step,move) => {
         const desc = move ? 'Go to move' + move : 'Go to game start';
        return (
-            <li>
+            <li key={move}>
                 <button onClick={() => this.jumpTo(move)}>{desc}</button>
             </li>
         )
